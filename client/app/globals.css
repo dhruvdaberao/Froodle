@@ -35,8 +35,15 @@ html {
   background: var(--bg);
 }
 
+html,
+body,
+#__next {
+  min-height: 100%;
+}
+
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   color: var(--text-main);
   background:
     linear-gradient(var(--grid-glow), var(--grid-glow)),
@@ -192,6 +199,37 @@ body.room-page-landscape {
 @supports (height: 100svh) {
   .room-landscape-enforced {
     min-height: var(--room-viewport-height, 100svh);
+  }
+}
+
+
+.room-panel-scroll {
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.room-floating-chat-panel {
+  top: max(0.75rem, env(safe-area-inset-top));
+  bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+.room-floating-tool-panel {
+  top: max(0.75rem, env(safe-area-inset-top));
+  bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+.room-chat-composer {
+  padding-bottom: max(0rem, env(safe-area-inset-bottom));
+}
+
+@media (min-width: 640px) {
+  .room-floating-chat-panel,
+  .room-floating-tool-panel {
+    top: 1rem;
+    bottom: 1rem;
   }
 }
 
