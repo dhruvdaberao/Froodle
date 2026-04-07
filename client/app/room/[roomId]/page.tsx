@@ -168,7 +168,7 @@ const railButtonBase =
 const floatingPanelCard =
   "rounded-[20px] border border-black/5 bg-white/95 p-3 shadow-[0_22px_44px_rgba(15,23,42,0.18)] backdrop-blur-xl";
 const floatingPanelBody =
-  "min-h-0 flex-1 overflow-y-auto pr-1 [-ms-overflow-style:none] [scrollbar-width:thin] touch-pan-y";
+  "room-panel-scroll pr-1 [-ms-overflow-style:none] [scrollbar-width:thin] touch-pan-y";
 const controlLabel =
   "text-[10px] font-semibold uppercase tracking-[0.18em] text-[color:var(--text-muted)]";
 const railBadge =
@@ -1577,7 +1577,7 @@ export default function RoomPage() {
         {activeFunctionPanel === "chat" && (
           <div
             ref={functionPanelRef}
-            className={`absolute bottom-3 left-[calc(0.25rem+56px)] z-40 flex max-h-[min(68vh,560px)] w-[min(360px,calc(100vw-4.5rem))] flex-col sm:bottom-4 sm:left-[calc(0.5rem+72px)] ${floatingPanelCard}`}
+            className={`room-floating-chat-panel absolute left-[calc(0.25rem+56px)] right-3 z-40 flex min-h-0 w-auto max-w-[420px] flex-col overflow-hidden sm:left-[calc(0.5rem+72px)] sm:right-auto sm:w-[min(420px,calc(100vw-7rem))] ${floatingPanelCard}`}
           >
             <div className="mb-2 flex items-center justify-between gap-2">
               <p className="text-sm font-black text-[color:var(--text-main)]">
@@ -1591,7 +1591,7 @@ export default function RoomPage() {
                 <X size={16} />
               </button>
             </div>
-            <div className={`${floatingPanelBody} space-y-2`}>
+            <div className={`${floatingPanelBody} space-y-2 pb-1`}>
               {chatMessages.length === 0 ? (
                 <div className="rounded-[18px] bg-[color:var(--bg-elevated)] px-3 py-4 text-sm text-[color:var(--text-muted)]">
                   No messages yet. Start the conversation.
@@ -1621,7 +1621,7 @@ export default function RoomPage() {
               )}
               <div ref={chatEndRef} />
             </div>
-            <div className="mt-3 flex shrink-0 gap-2">
+            <div className="room-chat-composer mt-3 flex shrink-0 gap-2 border-t border-black/5 pt-3">
               <input
                 value={chatDraft}
                 onChange={(event) => setChatDraft(event.target.value)}
@@ -1642,7 +1642,7 @@ export default function RoomPage() {
         {activeToolPanel && (
           <div
             ref={toolPanelRef}
-            className={`absolute right-[calc(0.25rem+56px)] top-3 z-40 flex max-h-[min(72vh,620px)] w-[min(320px,calc(100vw-4.5rem))] flex-col sm:right-[calc(0.5rem+72px)] sm:top-4 ${floatingPanelCard}`}
+            className={`room-floating-tool-panel absolute left-auto right-[calc(0.25rem+56px)] z-40 flex min-h-0 w-[min(320px,calc(100vw-4.5rem))] max-w-[calc(100vw-4.5rem)] flex-col overflow-hidden sm:right-[calc(0.5rem+72px)] sm:w-[min(320px,calc(100vw-7rem))] ${floatingPanelCard}`}
           >
             <div className="mb-2 flex items-center justify-between gap-2">
               <p className="text-sm font-black capitalize text-[color:var(--text-main)]">
